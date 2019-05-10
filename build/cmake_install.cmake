@@ -1,4 +1,4 @@
-# Install script for directory: /home/kjhong/InMemoryIndex
+# Install script for directory: /home/junyoung2/InMemoryIndex
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/kjhong/InMemoryIndex/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/junyoung2/InMemoryIndex/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

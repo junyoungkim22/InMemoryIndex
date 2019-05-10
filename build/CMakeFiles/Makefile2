@@ -50,19 +50,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/kjhong/CMake/bin/cmake
+CMAKE_COMMAND = /usr/local/bin/cmake
 
 # The command to remove a file.
-RM = /home/kjhong/CMake/bin/cmake -E remove -f
+RM = /usr/local/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kjhong/InMemoryIndex
+CMAKE_SOURCE_DIR = /home/junyoung2/InMemoryIndex
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kjhong/InMemoryIndex/build
+CMAKE_BINARY_DIR = /home/junyoung2/InMemoryIndex/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/workload.dir
@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = /home/kjhong/InMemoryIndex/build
 CMakeFiles/workload.dir/all:
 	$(MAKE) -f CMakeFiles/workload.dir/build.make CMakeFiles/workload.dir/depend
 	$(MAKE) -f CMakeFiles/workload.dir/build.make CMakeFiles/workload.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kjhong/InMemoryIndex/build/CMakeFiles --progress-num=1,2 "Built target workload"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/junyoung2/InMemoryIndex/build/CMakeFiles --progress-num=1,2 "Built target workload"
 .PHONY : CMakeFiles/workload.dir/all
 
 # Include target in all.
@@ -81,9 +81,9 @@ all: CMakeFiles/workload.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/workload.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kjhong/InMemoryIndex/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/junyoung2/InMemoryIndex/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/workload.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kjhong/InMemoryIndex/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/junyoung2/InMemoryIndex/build/CMakeFiles 0
 .PHONY : CMakeFiles/workload.dir/rule
 
 # Convenience name for target.

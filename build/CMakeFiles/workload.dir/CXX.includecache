@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/kjhong/InMemoryIndex/main.cpp
+/home/junyoung2/InMemoryIndex/main.cpp
 stdio.h
 -
 timer.hpp
-/home/kjhong/InMemoryIndex/timer.hpp
+/home/junyoung2/InMemoryIndex/timer.hpp
 util.hpp
-/home/kjhong/InMemoryIndex/util.hpp
+/home/junyoung2/InMemoryIndex/util.hpp
 assert.h
 -
 string
@@ -30,13 +30,13 @@ iostream
 map
 -
 
-/home/kjhong/InMemoryIndex/timer.hpp
+/home/junyoung2/InMemoryIndex/timer.hpp
 stdlib.h
 -
 sys/time.h
 -
 
-/home/kjhong/InMemoryIndex/util.hpp
+/home/junyoung2/InMemoryIndex/util.hpp
 vector
 -
 string
