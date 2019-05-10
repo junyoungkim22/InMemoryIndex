@@ -1,3 +1,0 @@
-/home/junyoung2/InMemoryIndex/build/CMakeFiles/rebuild_cache.dir
-/home/junyoung2/InMemoryIndex/build/CMakeFiles/edit_cache.dir
-/home/junyoung2/InMemoryIndex/build/CMakeFiles/workload.dir
