@@ -13,36 +13,116 @@
 #define READ 1
 #define UPDATE 2
 #define SCAN 3
- 
+
+#define segSize 8 // bit size
+#define childNum 256 // 2^(segSize)
+#define maxLen 8 // 64/segSize
+
+class Trie_node{
+	public: 
+		Trie_node* parent;
+		Trie_node* child[childNum];
+		bool isEnd;
+		int8_t value;
+
+		Trie_node(){
+			parent = NULL;
+
+			for(int i=0; i<childNum; i++)
+				child[i] = NULL;
+
+			isEnd = false;
+		}
+		
+		~Trie_node(){
+			for(int i=0; i<childNum; i++)
+				if(child[i] != NULL)
+					delete child[i];
+		}
+
+		void insert(uint64_t key, int8_t pValue, int8_t level){
+			if(level == maxLen){
+				isEnd = true;
+				value = pValue;
+				return;
+			}
+			int8_t localKey = (int8_t)(&key)[level];
+
+			Trie_node* curNode = child[localKey];
+			
+			if(curNode ==  NULL){
+				curNode = new Trie_node;
+				curNode->parent = this;
+			}
+
+			curNode->insert(key, pValue, level+1);
+
+			return;
+		}
+
+		int8_t read(uint64_t key, int8_t level){
+			if(level == maxLen)
+				return value;
+			
+			int8_t localKey = (int8_t)(&key)[level];
+			Trie_node* curNode = child[localKey];
+			return curNode->read(key, level+1);
+		}
+		
+		void update(uint64_t key, int8_t pValue, int8_t level){
+			if(level == maxLen){
+				value = pValue;
+				return;
+			}
+			
+			int8_t localKey = (int8_t)(&key)[level];
+			Trie_node* curNode = child[localKey];
+			curNode->update(key, pValue, level+1);
+			return;
+		}
+
+		void scan(uint64_t key, uint8_t level, uint8_t& num, uint64_t& result){
+			if(level == maxLen){
+				result += value;
+				num--;
+				return;
+			}
+
+			int8_t localKey = (int8_t)(&key)[level];
+			for(int i=localKey; i<childNum; i++){
+				Trie_node* curNode = child[localKey];
+				
+				if(curNode == NULL)
+					continue;
+
+				curNode->scan(key, level+1, num, result);
+				if(num==0)
+					break;
+			}
+
+			return;
+		}
+};
 
 class InMemoryIndex {
 public:
-	std::map<uint64_t, int8_t> index;
-	
+	Trie_node root;
+
 	void insert(uint64_t key, int8_t value) {
-		index[key] = value;
-		// Impleent this function
+		root.insert(key, value, 0);
 	}
 
 	void update(uint64_t key, int8_t value) {
-		index[key] = value;
-		// Impleent this function
+		root.update(key, value, 0);
 	}
 
 	int8_t read(uint64_t key) {
-		return index[key];
-		// Impleent this function
+		return root.read(key, 0);
 	}
 
 	uint64_t scan(uint64_t key, int8_t num) {
-		auto it = index.lower_bound(key);
-		uint64_t result = 0;
-		for (int8_t i = 0; i < num; ++i) {
-			if (it == index.end()) break;
-			result += it->second;
-			++it;
-		}
-		// Impleent this function
+		int64_t result;
+		root.scan(key, 0, num, result);
 		return result;
 	}
 };
