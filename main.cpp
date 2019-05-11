@@ -41,12 +41,15 @@ class Trie_node{
 		}
 
 		void insert(uint64_t key, int8_t pValue, int8_t level){
+			//printf("key: %lx\n", (long) key);
 			if(level == maxLen){
 				isEnd = true;
 				value = pValue;
 				return;
 			}
-			int8_t localKey = (int8_t)(&key)[level];
+			//int8_t localKey = (uint8_t)(&key)[level];
+			uint8_t localKey = (key >> (8*level)) & 0xff;
+			//printf("localKey: %x\n", (unsigned) localKey);
 
 			Trie_node* curNode = child[localKey];
 			
@@ -61,15 +64,16 @@ class Trie_node{
 		}
 
 		int8_t read(uint64_t key, int8_t level){
+			//printf("read\n");
 			if(level == maxLen)
 				return value;
-			
 			int8_t localKey = (int8_t)(&key)[level];
 			Trie_node* curNode = child[localKey];
 			return curNode->read(key, level+1);
 		}
 		
 		void update(uint64_t key, int8_t pValue, int8_t level){
+			//printf("update\n");
 			if(level == maxLen){
 				value = pValue;
 				return;
@@ -81,7 +85,7 @@ class Trie_node{
 			return;
 		}
 
-		void scan(uint64_t key, uint8_t level, uint8_t& num, uint64_t& result){
+		void scan(uint64_t key, uint8_t level, int8_t& num, uint64_t& result){
 			if(level == maxLen){
 				result += value;
 				num--;
@@ -121,7 +125,7 @@ public:
 	}
 
 	uint64_t scan(uint64_t key, int8_t num) {
-		int64_t result;
+		uint64_t result;
 		root.scan(key, 0, num, result);
 		return result;
 	}
