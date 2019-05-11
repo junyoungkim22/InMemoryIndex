@@ -47,7 +47,6 @@ class Trie_node{
 				value = pValue;
 				return;
 			}
-			//int8_t localKey = (uint8_t)(&key)[level];
 			uint8_t localKey = (key >> (8*level)) & 0xff;
 			//printf("localKey: %x\n", (unsigned) localKey);
 
@@ -67,7 +66,7 @@ class Trie_node{
 			//printf("read\n");
 			if(level == maxLen)
 				return value;
-			int8_t localKey = (int8_t)(&key)[level];
+			uint8_t localKey = (key >> (8*level)) & 0xff;
 			Trie_node* curNode = child[localKey];
 			return curNode->read(key, level+1);
 		}
@@ -79,7 +78,7 @@ class Trie_node{
 				return;
 			}
 			
-			int8_t localKey = (int8_t)(&key)[level];
+			uint8_t localKey = (key >> (8*level)) & 0xff;
 			Trie_node* curNode = child[localKey];
 			curNode->update(key, pValue, level+1);
 			return;
@@ -92,7 +91,7 @@ class Trie_node{
 				return;
 			}
 
-			int8_t localKey = (int8_t)(&key)[level];
+			uint8_t localKey = (key >> (8*level)) & 0xff;
 			for(int i=localKey; i<childNum; i++){
 				Trie_node* curNode = child[localKey];
 				
