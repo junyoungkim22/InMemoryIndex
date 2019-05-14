@@ -69,7 +69,6 @@ class Trie_node{
 //			printf("read key: %lx\n", (long)key);
 			if(level == maxLen)
 				return value;
-
 //			int8_t localKey = (int8_t)(&key)[level];
 			uint8_t localKey = (key >> (segSize * level)) & 0x0f;
 //			printf("localKey: %x\n", (unsigned) localKey);
